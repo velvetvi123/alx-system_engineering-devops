@@ -1,0 +1,15 @@
+Description:
+This web infrastructure aims at sharing the load between a primary server and a replica server, which lightens the traffic of the primary server. A load balancer is used to distribute the load between the primary and replica servers.
+
+Details About This Infrastructure:
+
+The distribution algorithm used by the load balancer is the Round Robin distribution algorithm, which picks a server in a circular order, considering the weights. This makes sure that the processing time is kept uniform, and the weight of the servers can be dynamically adjusted.
+A load balancer setup makes it possible to have an Active-Passive configuration. This implies that when one node is active, the other node is passive or standby. This ensures work sharing and availability because when the active node goes down, the passive node becomes active.
+In a Primary-Replica, which is a Master-Slave cluster, there exists one server that is used as the Primary or Master server. This server responds to read and write requests, while the Replica/Slave only responds to read requests. Data is synchronized whenever a write operation is performed on the Primary.
+The Primary node handles the write operations for the application while the replica node handles the read operations for the application, thereby reducing the read traffic directed to the Primary node.
+Challenges with This Infrastructure:
+
+There exist several Single Points of Failure: the Primary MySQL database server, the server hosting the load balancer, and the application server that connects to the primary database server. Failure of any of these will result in a failure of the entire system.
+This infrastructure lacks security since data between the web server and the database server is not encrypted using SSL. The data can easily be intercepted by hackers. There are no firewalls to prevent unauthorized IPs from accessing this database.
+There is no monitoring to keep track of the status of each server, thus making it difficult to detect and report faults.
+
