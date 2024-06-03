@@ -1,0 +1,22 @@
+Description
+This is a three-server web infrastructure designed to be secure, monitored, and capable of serving encrypted traffic.
+
+Specifics About This Infrastructure
+Purpose of the Firewalls:
+Firewalls are implemented to protect the network, particularly the web servers, from unauthorized and unwanted access. They act as intermediaries between the internal and external networks, blocking incoming traffic that doesn't meet specified security criteria.
+
+Purpose of the SSL Certificate:
+An SSL certificate is used to encrypt the traffic between the web servers and the external network. This encryption helps to stop man-in-the-middle (MITM) attacks and network sniffing, hence maintaining the privacy, integrity, and authenticity of the transmitted data.
+
+Purpose of the Monitoring Clients:
+Monitoring clients are installed to oversee the servers and the external network. They analyze server performance and operations, assess overall health, and alert administrators if the servers underperform. These tools will provide the key metrics, test the server's accessibility, measure response times, and alert the administrator on issues such as missing or corrupt files, security vulnerabilities, and other critical errors.
+
+Issues With This Infrastructure
+Encryption Termination at Load Balancer:
+Terminating SSL at the load balancer level leaves the traffic between the load balancer and the web servers unencrypted, posing a security risk.
+
+Single MySQL Server:
+Having a single MySQL server is problematic because it does not scale and serves as a single point of failure, which may compromise the whole web infrastructure.
+
+Resource Contention:
+Servers with identical components can cause resource contention—CPU, Memory, I/O—leading to poor performance and difficulty in diagnosing issues. This setup is also not scalable.
